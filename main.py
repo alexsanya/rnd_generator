@@ -24,4 +24,4 @@ def hello():
 @app.get("/getRandom/<int:max>")
 def get_random(max):
     requests.get(ENDPOINT_URL)
-    return {"number": number}
+    return {"number": number % max}
