@@ -1,8 +1,10 @@
+import os
 import requests
 import threading
 from flask import Flask
 
 app = Flask(__name__)
+MAX = 10*10**6
 
 number = 0
 
@@ -15,7 +17,11 @@ spinning_roulete.start()
 
 ENDPOINT_URL = os.environ.get("ENDPOINT_URL")
 
-@app.route("/getRandom/{max:int}")
+@app.route('/')
+def hello():
+    return f'Hello from API'
+
+@app.get("/getRandom/<int:max>")
 def get_random(max):
     requests.get(ENDPOINT_URL)
     return {"number": number}
